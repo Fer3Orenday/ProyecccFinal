@@ -58,7 +58,7 @@ include_once("conexion.php");
                     } else {
                 ?>
                         <li class='opcionesM2' style='padding-right:200px;'><p style="font-size: 20px;
-    font-family: 'Concert One', cursive;" class='nav-link active' aria-current='page' href='#'>Bienvenido <?php echo $_SESSION['usuario']?></p> </li>
+    font-family: 'Concert One', cursive;" class='nav-link active' aria-current='page' href='#'>Bienvenido <?php echo $_SESSION['usuario']?></p></li>
                 <?php    }
                 ?>
                 <li class="opcionesM2 opcion1">
