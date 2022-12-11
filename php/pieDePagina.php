@@ -60,7 +60,12 @@
                             <p>
                                 <a class="text-black">Dubai</a>
                             </p>
+                            <li class="nav-item">
+                             <a class="nav-link active" href="../imagenes/cupon2.php">Cupon gratis, por su visita</a>
+                             </li>
+                           
                         </div>
+                       <br>
                         <!-- Grid column -->
 
                         <hr class="w-100 clearfix d-md-none" />

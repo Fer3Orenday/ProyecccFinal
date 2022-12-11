@@ -238,7 +238,7 @@ $_SESSION['precios']=array();
         Regala Drokey
         <br>
             <p>
-  <a class="btn btn-primary" data-toggle="collapse" href="./imagenes/1.png" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <a class="btn btn-primary" data-toggle="collapse" href="./php/cupon.php" role="button" aria-expanded="false" aria-controls="collapseExample">
     Obtener codigo de cupon
   </a>
   
