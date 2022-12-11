@@ -1,7 +1,34 @@
-<?php session_start();
+<?php ;
 include_once("conexion.php");
 // Variable de sesión en array:
-
+if (isset($_REQUEST['Bo'])){
+    //echo $_POST['id'];
+    $_SESSION['cuantos']--;
+    //print_r($_SESSION['productos']);
+    //unset($_SESSION['productos'][$_POST['ids']]);
+    echo "productos antes:";
+    print_r($_SESSION['productos']);
+    if (($clave = array_search($_POST['ids'], $_SESSION['productos'])) !== false) {
+        unset($_SESSION['productos'][$clave]);
+        echo "productos despues:";
+        print_r($_SESSION['productos']);
+    }
+    echo "precio antes:";
+    print_r($_SESSION['precios']);
+    if (($clave = array_search($_POST['precios'], $_SESSION['precios'])) !== false) {
+        unset($_SESSION['precios'][$clave]);
+        echo "precio despues:";
+        print_r($_SESSION['precios']);
+    }
+    //unset($_SESSION['precios'][$_POST['precios']]);
+    $_SESSION['total']-=$_POST['precios'];
+    //array_push($_SESSION['productos'],$_POST['id']);
+    //array_push($_SESSION['precios'],$_POST['precio']);
+    //$_SESSION['total']+=$_POST['precio'];
+} 
+//$_SESSION['productos'] = array();
+//$_SESSION['total']=0;
+//$_SESSION['precios']=array();
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,36 +128,40 @@ include_once("conexion.php");
                         
                             <div>
                                 <img onmouseover="showCart(this)"  style="width: 100px;" class="cart" src="../imagenes/cart.png" alt="">
-                                <p class="count-product">0</p>
+                                
+                                <p class="count-product"><?php echo $_SESSION['cuantos'];  ?></p>
                             </div>
                             <div class="cart-products" id="products-id">
                             <scroll-container>
                             <scroll-page>
                                 <p class="close-btn" onclick="closeBtn()">X</p>
                                 <h3>Mi carrito</h3>
-                                
+                                        
                                         <div class="card-items">
                                         <?php 
-                                            //$_SESSION['productos'] = array();
-                                            //$_SESSION['total']=0;
-                                            //$_SESSION['precios']=array();
+                                            
                                             
                                             $array_num = count($_SESSION['productos']);
                                             for ($i = 0; $i < $array_num; $i++){
+                                               
                                                 $con = 'select * from productos where idProd='.$_SESSION['productos'][$i];
                                                 //echo "<script>alert(".$con.")</script>";
                                                 $resultado = $conexion->query($con);
                                                 while ($fila = $resultado->fetch_assoc()) {
                                                     echo '
-                                                    <div class="item">
-                                                        <img src="../imagenes/'.$fila['imagen'].'" alt="no se">
-                                                        <div class="item-content">
-                                                            <h5>'.$fila['nombre'].'</h5>
-                                                            <h5 class="cart-price">'.$_SESSION['precios'][$i].'</h5>
-                                                            <h6>'.$fila['existencia'].'</h6>
+                                                    <form action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'" method="post">
+                                                        <div class="item">
+                                                            <input type="hidden" name="ids" id="id" placeholder="id" value="'.$fila['idProd'].'"  >
+                                                            <input type="hidden" name="precios" id="precio" placeholder="precio" value="'.$fila['precio'].'"  >
+                                                            <img src="../imagenes/'.$fila['imagen'].'" alt="no se">
+                                                            <div class="item-content">
+                                                                <h5>'.$fila['nombre'].'</h5>
+                                                                <h5 class="cart-price">'.$_SESSION['precios'][$i].'</h5>
+                                                                <h6>'.$fila['existencia'].'</h6>
+                                                            </div>
+                                                            <button type="submit" name="Bo" id='.$_SESSION['productos'][$i].' class="btn btn-danger" >Borrar</button>
                                                         </div>
-                                                        <span>X</span>
-                                                    </div>
+                                                    </form>
                                                     ';
                                                 }
                                             }
@@ -138,7 +169,7 @@ include_once("conexion.php");
                                         <!---->
                                         </div>
                                    
-                                <h2>Total: <strong class="price-total">0</strong> $</h2>
+                                <h2>Total: <strong class="price-total"><?php echo $_SESSION['total'];?></strong> $</h2>
                                 </scroll-page>
                                 </scroll-container>
                             </div>
@@ -160,13 +191,15 @@ include_once("conexion.php");
             </ul>
     </nav>
     <script>
+        
         function showCart(x){
             document.getElementById("products-id").style.display = "block";
         }
         function closeBtn(){
              document.getElementById("products-id").style.display = "none";
         }
-
+        
+       
     </script>
 
 
