@@ -56,34 +56,38 @@ $_SESSION['precios']=array();
 
 <body style="background-color: rgb(253, 253, 246);">
 
-<nav class="navbar navbar-expand " class="encabezado" style="background-color: rgb(217, 217, 235);  padding-left: 650px; ">
+<nav class="navbar navbar-expand " class="encabezado" style="background-color: rgb(217, 217, 235);  padding-left: 600px; ">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-
-                <li class="opcionesM2 opcion1">
-                    <a style=" font-family: 'Concert One', cursive;  font-size: 20px;"  class="nav-link active" aria-current="page" href="./php/acercaDe.php">Acerca De</a>
-                </li>
             <?php 
                     if(empty($_SESSION['usuario'])){
-                        echo "<li class='opcionesM2'>
-                        <a class='nav-link active' aria-current='page' href='login.php'>Iniciar Sesion</a></li>";
+            ?>
+                        <li class='opcionesM2'>
+                        <a  style="font-size: 20px;
+    font-family: 'Concert One', cursive;" class='nav-link active' aria-current='page' href='php/login.php'>Iniciar Sesion</a></li>
+
+                        <li class='opcionesM2'>
+                        <a style="font-size: 20px;
+    font-family: 'Concert One', cursive;" class='nav-link active' aria-current='page' href='php/register.php'>Registrarse</a></li>
+                <?php       
                     } else {
-                        echo "<li class='opcionesM2 style='padding-right:200px;'><p class='nav-link active' aria-current='page' href='#'>Bienvenido ".$_SESSION['usuario']."</p> </li>";
-                    }
                 ?>
-
-                <li class="opcionesM2">
-                    <a class="nav-link active" aria-current="page" href="#">-</a>
+                        <li class='opcionesM2' style='padding-right:200px;'><p style="font-size: 20px;
+    font-family: 'Concert One', cursive;" class='nav-link active' aria-current='page' href='#'>Bienvenido <?php echo $_SESSION['usuario']?></p> </li>
+                <?php    }
+                ?>
+                <li class="opcionesM2 opcion1">
+                    <a style="font-size: 20px;
+    font-family: 'Concert One', cursive;" class="nav-link active" aria-current="page" href="php/acercaDe.php">Acerca De</a>
                 </li>
-
-
-                <li class="opcionesM2">
-                    <a class="nav-link active" aria-current="page" href="/php/acercaDe.php">Acerca de</a>
-                </li>
-
-                <li class="opcionesM2">
-                    <a class="nav-link active" aria-current="page" href="#">-</a>
-                </li>
+                <?php
+                    if (!empty($_SESSION['usuario'])) {
+                ?>
+              <li class="opcionesM2"><a style="font-size: 20px;
+    font-family: 'Concert One', cursive;" class="nav-link active" href="php/terminar.php">Cerrar Sesion</a></li>
+              <?php
+                }
+              ?>
             </ul>
     </nav>
 
