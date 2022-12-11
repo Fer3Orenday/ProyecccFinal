@@ -1,6 +1,7 @@
 <?php session_start();
 $_SESSION['productos'] = array();
 $_SESSION['total']=0;
+$_SESSION['cuantos']=0;
 $_SESSION['precios']=array();
  ?>
 

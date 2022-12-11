@@ -16,8 +16,37 @@
 </head>
 <body>
 <?php
+session_start();
+include_once("conexion.php");
+if (isset($_REQUEST['cam'])){
+    //echo $_POST['id'];
+    $con = 'select * from productos where idProd="'.$_POST['id'].'"';  
+    $resultado = $conexion->query($con);
+    $exi=0;$cexi=0;
+    while ($fila = $resultado->fetch_assoc()) {
+        $exi=$fila['existencia'];
+    }
+    foreach($_SESSION['productos'] as $valor){
+        if($valor==$_POST['id']){
+            $cexi++;
+        }
+    }
+    if($exi>$cexi){
+        $_SESSION['cuantos']++;
+        array_push($_SESSION['productos'],$_POST['id']);
+        array_push($_SESSION['precios'],$_POST['precio']);
+        $_SESSION['total']+=$_POST['precio'];
+    }else{
+        echo "<script> alert('existencia sobre pasada'); </script>";
+    }
+
+
+      
+    
+
+}  
   include_once("encabezado.php");
-  include_once("conexion.php");
+  
 ?>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -36,17 +65,7 @@
 <section class="container">
         <div class="products">
             <?php
-                if (isset($_REQUEST['cam'])){
-                    //echo $_POST['id'];
-                    array_push($_SESSION['productos'],$_POST['id']);
-                    array_push($_SESSION['precios'],$_POST['precio']);
-                    $_SESSION['total']+=$_POST['precio'];
-                    //var_dump($_SESSION['productos']);
-                    //echo "<br>";
-                    //var_dump($_SESSION['precios']);
-                    //echo "<br>";
-                    //echo $_SESSION['total'];
-                }  
+                
                 if(!isset($_POST['muestra'])){
                     $con = 'select * from productos ';
                 }else{
@@ -58,15 +77,6 @@
                     
                 }
                 $resultado = $conexion->query($con);
-                $i=0;
-                /*
-                $_SESSION['productos'] = array();
-$_SESSION['total'];
-$_SESSION['precios']=array();
-                 */
-                //print_r($_SESSION['productos']);
-                //print_r($_SESSION['precios']);
-                //echo $_SESSION['total'];
                 while ($fila = $resultado->fetch_assoc()) {
                     echo '
                     <form action="'.$_SERVER["PHP_SELF"].'" method="post"  enctype="multipart/form-data">
