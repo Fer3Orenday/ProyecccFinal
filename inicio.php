@@ -113,7 +113,7 @@ $_SESSION['precios']=array();
                             <a style="font-family: 'Concert One', cursive; font-size: 25px;" class="nav-link active" aria-current="page" href="#">Nosotros</a>
                         </li>
                         <li class="opcionesM">
-                            <a style="font-family: 'Concert One', cursive; font-size: 25px;" class="nav-link active" aria-current="page" href="./php/ContactoJ.php">Contáctanos</a>
+                            <a style="font-family: 'Concert One', cursive; font-size: 25px;" class="nav-link active" aria-current="page" href="php/ContactoJ.php">Contáctanos</a>
                         </li>
                         <li class="opcionesM">
                             <a style="font-family: 'Concert One', cursive; font-size: 25px;" class="nav-link active" aria-current="page" href="./php/preg-frecuentes.php">Ayuda</a>
