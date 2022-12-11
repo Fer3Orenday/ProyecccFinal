@@ -9,7 +9,8 @@ include ('encabezado.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="./css/cupon.css">
+    <link rel="stylesheet" href="../css/cupon.css">
+    
 
 </head>
 <body style="background: #FCF3CF;">
@@ -21,14 +22,13 @@ include ('encabezado.php');
 <br>
 <br>
 
-
+<div class="container">
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
+  <div>
     <h1 class="display-4">CODIGO DE CUPON ES:</h1>
     <p class="lead">029488921219</p>
   </div>
 </div>
-
 <br>
 <br>
 
@@ -39,6 +39,9 @@ include ('encabezado.php');
   </div>
 <br>
 <br>
+</div>
+
+
 
 
 
